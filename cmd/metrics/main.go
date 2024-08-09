@@ -12,6 +12,9 @@ import (
 )
 
 func main() {
+	envListen := os.Getenv("MTL_METRICS_LISTEN")
+	envMTLAPTotalCron := os.Getenv("MTL_METRICS_MTLAP_TOTAL_CRON")
+
 	l := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelDebug,
 	}))
@@ -27,7 +30,7 @@ func main() {
 
 	metrics.WrapDebug("mtlapGauge", mtlapGauge.Update)()
 
-	_, err := c.AddFunc("@hourly",
+	_, err := c.AddFunc(envMTLAPTotalCron,
 		metrics.WrapDebug("mtlapGauge", mtlapGauge.Update))
 	if err != nil {
 		l.Error("failed to add func", slog.Any("error", err))
@@ -39,9 +42,9 @@ func main() {
 
 	http.Handle("/metrics", promhttp.Handler())
 
-	l.Info("starting server on :80")
+	l.Info("starting server on " + envListen)
 
-	if err := http.ListenAndServe(":80", nil); err != nil {
+	if err := http.ListenAndServe(envListen, nil); err != nil {
 		l.Error("failed to start server", slog.Any("error", err))
 		os.Exit(1)
 	}
