@@ -38,13 +38,13 @@ func NewMetrics(l Logger) *Metrics {
 }
 
 type MTLAPGaugeParams struct {
-	mtlapCount           string
-	isCouncilReady       bool
-	isCouncilDelegation  bool
-	isAssemblyDelegation bool
-	isFundDelegation     bool
-	isBSNBasicFilled     bool
-	isBSNPartialyFilled  bool
+	MTLAPCount           string
+	IsCouncilReady       bool
+	IsCouncilDelegation  bool
+	IsAssemblyDelegation bool
+	IsFundDelegation     bool
+	IsBSNBasicFilled     bool
+	IsBSNPartialyFilled  bool
 }
 
 func (m *Metrics) MTLAPGaugeReset() {
@@ -54,13 +54,13 @@ func (m *Metrics) MTLAPGaugeReset() {
 
 func (m *Metrics) MTLAPGaugeInc(p MTLAPGaugeParams) {
 	m.mtlapGauge.WithLabelValues(
-		strconv.FormatBool(p.isCouncilReady),
-		strconv.FormatBool(p.isCouncilDelegation),
-		strconv.FormatBool(p.isAssemblyDelegation),
-		strconv.FormatBool(p.isFundDelegation),
-		strconv.FormatBool(p.isBSNBasicFilled),
-		strconv.FormatBool(p.isBSNPartialyFilled),
-		p.mtlapCount,
+		strconv.FormatBool(p.IsCouncilReady),
+		strconv.FormatBool(p.IsCouncilDelegation),
+		strconv.FormatBool(p.IsAssemblyDelegation),
+		strconv.FormatBool(p.IsFundDelegation),
+		strconv.FormatBool(p.IsBSNBasicFilled),
+		strconv.FormatBool(p.IsBSNPartialyFilled),
+		p.MTLAPCount,
 	).Inc()
 	m.l.Debug("[metrics] mtlap_total inc", slog.Any("params", p))
 }
