@@ -104,6 +104,21 @@ func TestMTLAPGauge_Update(t *testing.T) {
 			},
 		},
 		{
+			name: "BSNPartialyFilled",
+			accs: []horizon.Account{
+				{
+					Data: map[string]string{
+						dataKeyName: base64Encode("Stas Karkavin"),
+					},
+					Balances: defaultAccountBalances,
+				},
+			},
+			expectedGaugeParams: MTLAPGaugeParams{
+				isBSNPartialyFilled: true,
+				mtlapCount:          defaultBalance,
+			},
+		},
+		{
 			name: "MTLAPCount",
 			accs: []horizon.Account{
 				{
