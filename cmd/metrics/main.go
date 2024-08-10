@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"runtime/debug"
 	"strings"
 
 	"github.com/Montelibero/metrics"
@@ -14,6 +15,17 @@ import (
 	"github.com/stellar/go/clients/horizonclient"
 	"github.com/urfave/cli/v2"
 )
+
+var Commit = func() string {
+	if info, ok := debug.ReadBuildInfo(); ok {
+		for _, setting := range info.Settings {
+			if setting.Key == "vcs.revision" {
+				return setting.Value
+			}
+		}
+	}
+	return ""
+}()
 
 func main() {
 	logLevelMap := map[string]slog.Level{
@@ -24,6 +36,7 @@ func main() {
 	}
 
 	app := &cli.App{
+		Version: Commit,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:    "addr",
@@ -59,6 +72,8 @@ func main() {
 				Level: logLevelMap[strings.ToUpper(c.String("log-level"))],
 			}))
 			cl := horizonclient.DefaultPublicNetClient
+
+			l.Info("starting metrics", slog.String("commit", Commit))
 
 			m := metrics.NewMetrics(l)
 			mtlapGauge := metrics.NewMTLAPGauge(l, cl, m)
