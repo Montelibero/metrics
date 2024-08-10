@@ -74,14 +74,14 @@ func (g *MTLAPGauge) Update() {
 			isDataExist(acc, dataKeyWebsite)
 
 		p := MTLAPGaugeParams{
-			isCouncilReady: isDataEqual(acc, dataKeyMTLACouncil, dataValueReady),
-			isCouncilDelegation: !isDataEqual(acc, dataKeyMTLACouncil, dataValueReady) &&
+			IsCouncilReady: isDataEqual(acc, dataKeyMTLACouncil, dataValueReady),
+			IsCouncilDelegation: !isDataEqual(acc, dataKeyMTLACouncil, dataValueReady) &&
 				isDataExist(acc, dataKeyMTLACouncil),
-			isAssemblyDelegation: isDataExist(acc, dataKeyMTLAAssembly),
-			isFundDelegation:     isDataExist(acc, dataKeyMTLFund),
-			isBSNBasicFilled:     isBSNBasicFilled,
-			isBSNPartialyFilled:  !isBSNBasicFilled && isBSNPartialyFilled,
-			mtlapCount:           acc.GetCreditBalance(mtlapAsset, mtlapIssuer),
+			IsAssemblyDelegation: isDataExist(acc, dataKeyMTLAAssembly),
+			IsFundDelegation:     isDataExist(acc, dataKeyMTLFund),
+			IsBSNBasicFilled:     isBSNBasicFilled,
+			IsBSNPartialyFilled:  !isBSNBasicFilled && isBSNPartialyFilled,
+			MTLAPCount:           acc.GetCreditBalance(mtlapAsset, mtlapIssuer),
 		}
 
 		g.m.MTLAPGaugeInc(p)

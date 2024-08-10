@@ -37,8 +37,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isCouncilReady: true,
-				mtlapCount:     defaultBalance,
+				IsCouncilReady: true,
+				MTLAPCount:     defaultBalance,
 			},
 		},
 		{
@@ -52,8 +52,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isCouncilDelegation: true,
-				mtlapCount:          defaultBalance,
+				IsCouncilDelegation: true,
+				MTLAPCount:          defaultBalance,
 			},
 		},
 		{
@@ -67,8 +67,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isAssemblyDelegation: true,
-				mtlapCount:           defaultBalance,
+				IsAssemblyDelegation: true,
+				MTLAPCount:           defaultBalance,
 			},
 		},
 		{
@@ -82,8 +82,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isFundDelegation: true,
-				mtlapCount:       defaultBalance,
+				IsFundDelegation: true,
+				MTLAPCount:       defaultBalance,
 			},
 		},
 		{
@@ -99,8 +99,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isBSNBasicFilled: true,
-				mtlapCount:       defaultBalance,
+				IsBSNBasicFilled: true,
+				MTLAPCount:       defaultBalance,
 			},
 		},
 		{
@@ -114,8 +114,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				isBSNPartialyFilled: true,
-				mtlapCount:          defaultBalance,
+				IsBSNPartialyFilled: true,
+				MTLAPCount:          defaultBalance,
 			},
 		},
 		{
@@ -134,7 +134,7 @@ func TestMTLAPGauge_Update(t *testing.T) {
 				},
 			},
 			expectedGaugeParams: MTLAPGaugeParams{
-				mtlapCount: "23.0000000",
+				MTLAPCount: "23.0000000",
 			},
 		},
 	}
