@@ -159,6 +159,8 @@ func TestMTLAPGauge_Update(t *testing.T) {
 			m.EXPECT().MTLAPGaugeReset()
 			m.EXPECT().MTLAPGaugeInc(tt.expectedGaugeParams)
 
+			l.EXPECT().Info("[mtlap_total] updated")
+
 			mtlapGauge := NewMTLAPGauge(l, cl, m)
 			mtlapGauge.Update()
 		})

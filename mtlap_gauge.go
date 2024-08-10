@@ -86,4 +86,6 @@ func (g *MTLAPGauge) Update() {
 
 		g.m.MTLAPGaugeInc(p)
 	}
+
+	g.l.Info("[mtlap_total] updated")
 }
